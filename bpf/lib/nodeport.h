@@ -34,6 +34,8 @@
 DECLARE_CONFIG(bool, enable_no_service_endpoints_routable,
 	       "Enable routes when service has 0 endpoints")
 DECLARE_CONFIG(__u16, device_mtu, "MTU of the device the bpf program is attached to")
+DECLARE_CONFIG(bool, enable_nodeport_acceleration,
+	       "Whether NodePort XDP acceleration is enabled")
 
 #ifdef IS_BPF_XDP
 DECLARE_CONFIG(union v4addr, ipv4_rss_prefix,

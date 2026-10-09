@@ -28,7 +28,6 @@
 /* Enable code paths under test */
 #define ENABLE_IPV4 1
 #define ENABLE_NODEPORT
-#define ENABLE_NODEPORT_ACCELERATION	/* exercise the XFER_PKT_NO_SVC handoff */
 #define ENABLE_DSR		1
 #define DSR_ENCAP_IPIP		2
 #define DSR_ENCAP_MODE		DSR_ENCAP_IPIP
@@ -73,7 +72,7 @@ enum {
 static volatile __u32 num_calls[RECORD_MAX];
 
 /* Simulated XDP -> TC handoff state. cil_from_netdev calls ctx_get_xfer()
- * at entry; with ENABLE_NODEPORT_ACCELERATION set this is how XDP signals
+ * at entry; with enable_nodeport_acceleration enabled this is how XDP signals
  * "I couldn't classify, skip nodeport at TC" via XFER_PKT_NO_SVC. We mock
  * it so each test can choose whether to simulate XDP having run upstream.
  *
@@ -173,6 +172,8 @@ mock_ctx_get_ingress_ifindex(const struct __sk_buff *ctx __maybe_unused)
 }
 
 #include "lib/bpf_host.h"
+
+ASSIGN_CONFIG(bool, enable_nodeport_acceleration, true)
 
 /* Stands in for bpf_lxc's tail_ipv4_policy program: reads the calling-convention
  * meta that local_delivery_fill_meta() set and performs the redirect_ep() with

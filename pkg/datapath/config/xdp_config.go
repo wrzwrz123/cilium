@@ -24,6 +24,8 @@ type BPFXDP struct {
 	EnableNAT46X64 bool `config:"enable_nat_46x64"`
 	// Enable routes when service has 0 endpoints.
 	EnableNoServiceEndpointsRoutable bool `config:"enable_no_service_endpoints_routable"`
+	// Whether NodePort XDP acceleration is enabled.
+	EnableNodeportAcceleration bool `config:"enable_nodeport_acceleration"`
 	// Masquerade traffic to remote nodes.
 	EnableRemoteNodeMasquerade bool `config:"enable_remote_node_masquerade"`
 	// Reply with ICMP to traffic to a service with no backends.
@@ -66,7 +68,7 @@ type BPFXDP struct {
 
 func NewBPFXDP(node Node) *BPFXDP {
 	return &BPFXDP{0x0, false, false, false, false, false, false, false, false, false,
-		0x0, false, cast[types.V4Addr]([]byte{0x0, 0x0, 0x0, 0x0}),
+		false, 0x0, false, cast[types.V4Addr]([]byte{0x0, 0x0, 0x0, 0x0}),
 		0x20,
 		cast[types.V6Addr]([]byte{0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}),
 		0x80, 0x0,

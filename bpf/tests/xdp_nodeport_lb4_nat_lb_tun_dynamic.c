@@ -14,7 +14,6 @@
 #define ENABLE_IPV4 1
 #define ENABLE_NODEPORT 1
 #define TUNNEL_MODE 1
-#define ENABLE_NODEPORT_ACCELERATION 1
 
 #define FRONTEND_IP_REMOTE	v4_svc_two
 #define FRONTEND_PORT		tcp_svc_one

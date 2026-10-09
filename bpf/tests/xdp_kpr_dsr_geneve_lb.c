@@ -12,6 +12,5 @@
 #define DSR_ENCAP_MODE			DSR_ENCAP_GENEVE
 #define ENCAP_IFINDEX			42
 
-#define ENABLE_NODEPORT_ACCELERATION	1
 
 #include "kpr_dsr_lb.h"

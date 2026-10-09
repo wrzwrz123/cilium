@@ -60,6 +60,7 @@ func baseLXCPermutations() *loadPermutationBuilder {
 			t.SocketLB.HostNSOnly = true
 			t.SocketLB.EnableTracing = true
 			t.EnableNAT46X64 = true
+			t.EnableNodeportAcceleration = true
 		}),
 
 		Increment(func(t *config.BPFLXC, v bool) { t.Node.PolicyDenyResponseEnabled = v }),
@@ -85,6 +86,7 @@ func baseHostPermutations() *loadPermutationBuilder {
 			t.EnableVTEP = true
 			t.EnableServiceNoBackendResponse = true
 			t.EnableNAT46X64 = true
+			t.EnableNodeportAcceleration = true
 		}),
 
 		Increment(func(t *config.BPFHost, v bool) { t.Node.PolicyDenyResponseEnabled = v }),
@@ -121,6 +123,7 @@ func baseOverlayPermutations() *loadPermutationBuilder {
 			t.EnableVTEP = true
 			t.EnableServiceNoBackendResponse = true
 			t.EnableNAT46X64 = true
+			t.EnableNodeportAcceleration = true
 		}),
 		Increment(func(t *config.BPFOverlay, v bool) { t.Node.EnableEndpointRoutes = v }),
 	)
@@ -163,6 +166,7 @@ func baseWireguardPermutations() *loadPermutationBuilder {
 			t.EnableIPv6Fragments = true
 			t.EnableVTEP = true
 			t.EnableNAT46X64 = true
+			t.EnableNodeportAcceleration = true
 			t.EnableServiceNoBackendResponse = true
 		}),
 		Increment(func(t *config.BPFWireguard, v bool) { t.Node.EnableEndpointRoutes = v }),
@@ -181,6 +185,7 @@ func baseXDPPermutations() *loadPermutationBuilder {
 			t.EnableIPv6Fragments = true
 			t.EnableVTEP = true
 			t.EnableNAT46X64 = true
+			t.EnableNodeportAcceleration = true
 			t.EnableServiceNoBackendResponse = true
 		}),
 		Increment(func(t *config.BPFXDP, v bool) { t.EnableXDPPrefilter = v }),

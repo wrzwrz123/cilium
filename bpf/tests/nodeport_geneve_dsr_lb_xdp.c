@@ -8,7 +8,6 @@
 /* Enable code paths under test */
 #define ENABLE_IPV4 1
 #define ENABLE_NODEPORT
-#define ENABLE_NODEPORT_ACCELERATION
 #define ENABLE_DSR		1
 
 #define DSR_ENCAP_IPIP		2

@@ -1314,10 +1314,11 @@ int cil_from_netdev(struct __ctx_buff *ctx)
 
 	check_and_store_ip_trace_id(ctx);
 
-#ifdef ENABLE_NODEPORT_ACCELERATION
-	__u32 flags = ctx_get_xfer(ctx, XFER_FLAGS);
-#endif
+	__u32 flags = 0;
 	int ret;
+
+	if (CONFIG(enable_nodeport_acceleration))
+		flags = ctx_get_xfer(ctx, XFER_FLAGS);
 
 	/* Filter allowed vlan id's and pass them back to kernel.
 	 * We will see the packet again in from-netdev@eth0.vlanXXX.
@@ -1336,15 +1337,12 @@ int cil_from_netdev(struct __ctx_buff *ctx)
 
 	ctx_skip_nodeport_clear(ctx);
 
-#ifdef ENABLE_NODEPORT_ACCELERATION
-	if (flags & XFER_PKT_NO_SVC)
+	if (CONFIG(enable_nodeport_acceleration) && flags & XFER_PKT_NO_SVC)
 		ctx_skip_nodeport_set(ctx);
 
-#ifdef HAVE_ENCAP
-	if (flags & XFER_PKT_SNAT_DONE)
+	if (CONFIG(enable_nodeport_acceleration) && is_defined(HAVE_ENCAP) &&
+	    flags & XFER_PKT_SNAT_DONE)
 		ctx_snat_done_set(ctx);
-#endif
-#endif
 
 	if (!validate_ethertype(ctx, &proto)) {
 #ifdef ENABLE_HOST_FIREWALL

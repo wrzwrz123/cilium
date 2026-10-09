@@ -6,7 +6,6 @@
 
 #define ENABLE_IPV4 1
 #define ENABLE_NODEPORT
-#define ENABLE_NODEPORT_ACCELERATION
 
 #define fib_lookup mock_fib_lookup
 

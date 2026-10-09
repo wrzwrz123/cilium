@@ -20,7 +20,6 @@
 /* Enable code paths under test */
 #define ENABLE_IPV6
 #define ENABLE_NODEPORT
-#define ENABLE_NODEPORT_ACCELERATION	/* exercise the XFER_PKT_NO_SVC handoff */
 #define ENABLE_DSR		1
 #define DSR_ENCAP_IPIP		2
 #define DSR_ENCAP_MODE		DSR_ENCAP_IPIP
@@ -137,6 +136,8 @@ mock_ctx_get_ingress_ifindex(const struct __sk_buff *ctx __maybe_unused)
 }
 
 #include "lib/bpf_host.h"
+
+ASSIGN_CONFIG(bool, enable_nodeport_acceleration, true)
 
 /* Stands in for bpf_lxc's tail_ipv6_policy program: reads the calling-convention
  * meta that local_delivery_fill_meta() set and performs the redirect_ep() with

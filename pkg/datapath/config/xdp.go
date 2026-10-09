@@ -25,6 +25,7 @@ func XDP(lnc *Config, link netlink.Link) any {
 	}
 
 	cfg.EnableNAT46X64 = option.Config.NodePortNat46X64 && lnc.KPRConfig.KubeProxyReplacement
+cfg.EnableNodeportAcceleration = lnc.KPRConfig.KubeProxyReplacement && option.Config.NodePortAcceleration != option.NodePortAccelerationDisabled
 
 	cfg.EphemeralMin = lnc.EphemeralMin
 
